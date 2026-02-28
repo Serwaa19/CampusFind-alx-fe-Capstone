@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ReportScreen.css";
+import { X, HelpCircle, Camera, Upload, Check, ChevronRight } from "lucide-react";
 
 const CATEGORIES = [
   "Electronics",
@@ -53,101 +53,160 @@ const ReportScreen = ({ onNavigate }) => {
   };
 
   return (
-    <div className="report-screen">
+    <div className="min-h-screen bg-gray-50 pb-24">
       {/* Header */}
-      <header className="report-header">
-        <button className="close-btn" onClick={() => onNavigate?.("home")}>✕</button>
-        <h2>Report an Item</h2>
-        <button className="help-btn">Help</button>
+      <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-10">
+        <button 
+          onClick={() => onNavigate?.("home")}
+          className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+        >
+          <X className="w-5 h-5 text-gray-600" />
+        </button>
+        <h2 className="text-lg font-bold text-gray-900">Report an Item</h2>
+        <button className="text-gray-600 hover:text-gray-900 transition-colors">
+          <HelpCircle className="w-5 h-5" />
+        </button>
       </header>
 
-      <div className="report-body">
+      <div className="p-4 space-y-5">
         {/* Toggle */}
-        <div className="mode-toggle">
+        <div className="bg-gray-100 p-1 rounded-xl flex gap-1">
           <button
-            className={`toggle-btn ${mode === "lost" ? "active" : ""}`}
             onClick={() => setMode("lost")}
+            className={`flex-1 py-2.5 rounded-lg font-semibold text-sm transition-all ${
+              mode === "lost"
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-600"
+            }`}
           >
             Lost
           </button>
           <button
-            className={`toggle-btn ${mode === "found" ? "active" : ""}`}
             onClick={() => setMode("found")}
+            className={`flex-1 py-2.5 rounded-lg font-semibold text-sm transition-all ${
+              mode === "found"
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-600"
+            }`}
           >
             Found
           </button>
         </div>
 
         {/* Image Upload */}
-        <div className="photo-upload">
+        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
           {image ? (
-            <div className="photo-preview">
-              <img src={image} alt="Item" />
-              <button className="remove-photo" onClick={() => setImage(null)}>✕</button>
+            <div className="relative">
+              <img src={image} alt="Item" className="w-full h-48 object-cover rounded-xl" />
+              <button 
+                onClick={() => setImage(null)}
+                className="absolute top-2 right-2 w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors shadow-lg"
+              >
+                <X className="w-4 h-4 text-white" />
+              </button>
             </div>
           ) : (
-            <>
-              <div className="camera-icon">📷</div>
-              <h3>Add Item Photos</h3>
-              <p>Upload a photo to help others identify the item more quickly</p>
-              <label className="choose-image-btn">
+            <label className="flex flex-col items-center cursor-pointer">
+              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                <Camera className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-1">Add Item Photos</h3>
+              <p className="text-sm text-gray-500 text-center mb-4">
+                Upload a photo to help others identify the item more quickly
+              </p>
+              <div className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2">
+                <Upload className="w-4 h-4" />
                 Choose Image
-                <input type="file" accept="image/*" onChange={handleImageChange} hidden />
-              </label>
-            </>
+              </div>
+              <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+            </label>
           )}
         </div>
 
         {/* Form Fields */}
-        <div className="form-group">
-          <label>Item Name</label>
-          <input
-            type="text"
-            placeholder="e.g. Blue Hydro Flask, Keys"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-          />
-        </div>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">Item Name</label>
+            <input
+              type="text"
+              placeholder="e.g. Blue Hydro Flask, Keys"
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Category</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select Category</option>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">Category</label>
+            <div className="relative">
+              <select 
+                value={category} 
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm appearance-none"
+              >
+                <option value="">Select Category</option>
+                {CATEGORIES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+              <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 rotate-90 pointer-events-none" />
+            </div>
+          </div>
 
-        <div className="form-group">
-          <label>Last Seen Location</label>
-          <select value={location} onChange={(e) => setLocation(e.target.value)}>
-            <option value="">Select Campus Location</option>
-            {LOCATIONS.map((l) => (
-              <option key={l} value={l}>{l}</option>
-            ))}
-          </select>
-        </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">Last Seen Location</label>
+            <div className="relative">
+              <select 
+                value={location} 
+                onChange={(e) => setLocation(e.target.value)}
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm appearance-none"
+              >
+                <option value="">Select Campus Location</option>
+                {LOCATIONS.map((l) => (
+                  <option key={l} value={l}>{l}</option>
+                ))}
+              </select>
+              <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 rotate-90 pointer-events-none" />
+            </div>
+          </div>
 
-        <div className="form-group">
-          <label>Description</label>
-          <textarea
-            placeholder="Mention any specific details like color, scratches, stickers, or brand name..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={4}
-          />
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">Description</label>
+            <textarea
+              placeholder="Mention any specific details like color, scratches, stickers, or brand name..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm resize-none"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Submit */}
-      <div className="submit-section">
+      {/* Submit Button */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 max-w-[480px] mx-auto">
         <button
-          className={`submit-btn ${submitted ? "submitted" : ""}`}
           onClick={handleSubmit}
-          disabled={!itemName}
+          disabled={!itemName || submitted}
+          className={`w-full py-3.5 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+            submitted
+              ? "bg-green-600 text-white"
+              : !itemName
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+          }`}
         >
-          {submitted ? "✓ Report Submitted!" : "Submit Report →"}
+          {submitted ? (
+            <>
+              <Check className="w-5 h-5" />
+              Report Submitted!
+            </>
+          ) : (
+            <>
+              Submit Report
+              <ChevronRight className="w-5 h-5" />
+            </>
+          )}
         </button>
       </div>
     </div>
