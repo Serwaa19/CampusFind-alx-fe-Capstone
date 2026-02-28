@@ -40,7 +40,7 @@ const ITEMS = [
   },
   {
     id: 5,
-    name: "Black Laptop Charger",
+    name: "Black Dell Laptop",
     type: "LOST",
     status: "CLAIMED",
     location: "Engineering Building",
