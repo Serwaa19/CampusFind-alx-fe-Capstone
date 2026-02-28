@@ -242,10 +242,16 @@
   background: #1d4ed8;
 }
 
+/* FAB - positioned relative to app container */
+.browse-screen {
+  position: relative;
+}
+
 .browse-fab {
-  position: fixed;
-  bottom: 80px;
-  right: calc(50% - 215px + 20px);
+  position: sticky;
+  bottom: 90px;
+  float: right;
+  margin-right: 20px;
   width: 52px;
   height: 52px;
   background: #2563eb;
@@ -330,4 +336,25 @@
 
 .nav-item.active {
   color: #2563eb;
+}
+
+.nav-fab {
+  width: 54px;
+  height: 54px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+  margin-bottom: 10px;
+  transition: transform 0.15s;
+}
+
+.nav-fab:active {
+  transform: scale(0.94);
 }

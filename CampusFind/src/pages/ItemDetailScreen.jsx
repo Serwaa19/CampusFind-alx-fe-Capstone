@@ -20,10 +20,8 @@ const ITEM = {
   locationImage: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
   category: "Electronics",
   foundDate: "Oct 24, 2023",
-  description:
-    "I found this MacBook Pro earlier today. It's in a gray hardshell case. It looks relatively new. I've handed it to the library front desk, but I'm posting here to find the owner faster. Please describe the stickers on the back or the desktop wallpaper to claim it.",
-  safetyTip:
-    "For your safety, always meet in a public campus location (like the Student Union) and bring a friend when claiming items.",
+  description: "I found this MacBook Pro earlier today. It is in a gray hardshell case. It looks relatively new. I have handed it to the library front desk, but I am posting here to find the owner faster. Please describe the stickers on the back or the desktop wallpaper to claim it.",
+  safetyTip: "For your safety, always meet in a public campus location (like the Student Union) and bring a friend when claiming items.",
 };
 
 const ItemDetailScreen = ({ onNavigate }) => {
@@ -31,13 +29,12 @@ const ItemDetailScreen = ({ onNavigate }) => {
 
   return (
     <div className="detail-screen">
-      {/* Image Carousel */}
       <div className="carousel">
         <img src={ITEM.images[activeSlide]} alt={ITEM.name} />
         <button className="back-btn" onClick={() => onNavigate?.("browse")}>
-          ‹
+          &lsaquo;
         </button>
-        <button className="share-btn">⤴</button>
+        <button className="share-btn">&#10548;</button>
         <div className="dots">
           {ITEM.images.map((_, i) => (
             <button
@@ -50,75 +47,65 @@ const ItemDetailScreen = ({ onNavigate }) => {
       </div>
 
       <div className="detail-body">
-        {/* Title */}
         <div className="detail-title-section">
           <div className="detail-status-row">
-            <span className="found-badge">✓ FOUND</span>
+            <span className="found-badge">&#10003; FOUND</span>
             <span className="posted-time">Posted {ITEM.postedAgo}</span>
           </div>
           <h1 className="detail-name">{ITEM.name}</h1>
         </div>
 
-        {/* Poster */}
         <div className="poster-card">
           <img src={ITEM.poster.avatar} alt={ITEM.poster.name} className="poster-avatar" />
           <div className="poster-info">
             <div className="poster-name-row">
               <span className="poster-name">{ITEM.poster.name}</span>
-              <span className="verified-badge">✓</span>
+              <span className="verified-badge">&#10003;</span>
             </div>
             <span className="poster-role">{ITEM.poster.role}</span>
           </div>
-          <button className="view-profile-btn">View Profile</button>
+          <button className="view-profile-btn" onClick={() => onNavigate?.("dashboard")}>
+            View Profile
+          </button>
         </div>
 
-        {/* Location */}
         <div className="detail-section">
-          <h3><span className="section-icon">📍</span> Location Found</h3>
+          <h3><span className="section-icon">&#128205;</span> Location Found</h3>
           <p className="location-text">{ITEM.location}</p>
           <div className="location-map">
             <img src={ITEM.locationImage} alt="Location" />
-            <div className="map-pin">📍</div>
+            <div className="map-pin">&#128205;</div>
           </div>
         </div>
 
-        {/* Meta */}
         <div className="meta-row">
           <div className="meta-item">
             <span className="meta-label">CATEGORY</span>
-            <span className="meta-value">💻 {ITEM.category}</span>
+            <span className="meta-value">&#128187; {ITEM.category}</span>
           </div>
           <div className="meta-divider" />
           <div className="meta-item">
             <span className="meta-label">FOUND DATE</span>
-            <span className="meta-value">📅 {ITEM.foundDate}</span>
+            <span className="meta-value">&#128197; {ITEM.foundDate}</span>
           </div>
         </div>
 
-        {/* Description */}
         <div className="detail-section">
           <h3>Description</h3>
           <p className="description-text">{ITEM.description}</p>
         </div>
 
-        {/* Safety Tip */}
         <div className="safety-tip">
-          <span className="safety-icon">⚠️</span>
-          <p>
-            <strong>Safety Tip:</strong> {ITEM.safetyTip}
-          </p>
+          <span className="safety-icon">&#9888;&#65039;</span>
+          <p><strong>Safety Tip:</strong> {ITEM.safetyTip}</p>
         </div>
 
-        {/* Spacer for bottom bar */}
         <div style={{ height: 20 }} />
       </div>
 
-      {/* Bottom Action */}
       <div className="detail-actions">
-        <button className="message-btn">
-          💬 Message Finder
-        </button>
-        <button className="flag-btn">🚩</button>
+        <button className="message-btn">&#128172; Message Finder</button>
+        <button className="flag-btn">&#128681;</button>
       </div>
       <p className="response-note">Responses usually within 30 minutes</p>
     </div>

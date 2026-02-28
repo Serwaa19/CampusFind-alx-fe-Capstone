@@ -1,31 +1,43 @@
-/* App.css */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
-  background: #e5e9f0;
+  width: 100%;
+  height: 100%;
+  background: #dde3ed;
   font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app {
+#root {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  background: #dde3ed;
 }
 
-/* Mobile-first: full width on small screens */
+.app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: #f4f6fb;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+}
+
 @media (max-width: 480px) {
-  body {
+  html, body, #root {
     background: #f4f6fb;
   }
-  .app > div {
-    max-width: 100% !important;
+  .app {
+    box-shadow: none;
   }
 }

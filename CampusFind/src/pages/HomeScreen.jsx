@@ -111,7 +111,7 @@ const HomeScreen = ({ onNavigate }) => {
 
       {/* Bottom Nav */}
       <nav className="bottom-nav">
-        <button className="nav-item active">
+        <button className="nav-item active" onClick={() => onNavigate?.("home")}>
           <span>🏠</span>
           <span>Home</span>
         </button>
@@ -122,11 +122,11 @@ const HomeScreen = ({ onNavigate }) => {
         <button className="nav-fab" onClick={() => onNavigate?.("report")}>
           ＋
         </button>
-        <button className="nav-item">
-          <span>🔔</span>
-          <span>Alerts</span>
+        <button className="nav-item" onClick={() => onNavigate?.("dashboard")}>
+          <span>▦</span>
+          <span>Dashboard</span>
         </button>
-        <button className="nav-item">
+        <button className="nav-item" onClick={() => onNavigate?.("browse")}>
           <span>👤</span>
           <span>Profile</span>
         </button>

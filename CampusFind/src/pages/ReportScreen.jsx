@@ -56,9 +56,7 @@ const ReportScreen = ({ onNavigate }) => {
     <div className="report-screen">
       {/* Header */}
       <header className="report-header">
-        <button className="close-btn" onClick={() => onNavigate?.("home")}>
-          ✕
-        </button>
+        <button className="close-btn" onClick={() => onNavigate?.("home")}>✕</button>
         <h2>Report an Item</h2>
         <button className="help-btn">Help</button>
       </header>
@@ -85,9 +83,7 @@ const ReportScreen = ({ onNavigate }) => {
           {image ? (
             <div className="photo-preview">
               <img src={image} alt="Item" />
-              <button className="remove-photo" onClick={() => setImage(null)}>
-                ✕
-              </button>
+              <button className="remove-photo" onClick={() => setImage(null)}>✕</button>
             </div>
           ) : (
             <>
@@ -96,12 +92,7 @@ const ReportScreen = ({ onNavigate }) => {
               <p>Upload a photo to help others identify the item more quickly</p>
               <label className="choose-image-btn">
                 Choose Image
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  hidden
-                />
+                <input type="file" accept="image/*" onChange={handleImageChange} hidden />
               </label>
             </>
           )}
@@ -120,30 +111,20 @@ const ReportScreen = ({ onNavigate }) => {
 
         <div className="form-group">
           <label>Category</label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="">Select Category</option>
             {CATEGORIES.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
+              <option key={c} value={c}>{c}</option>
             ))}
           </select>
         </div>
 
         <div className="form-group">
           <label>Last Seen Location</label>
-          <select
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          >
+          <select value={location} onChange={(e) => setLocation(e.target.value)}>
             <option value="">Select Campus Location</option>
             {LOCATIONS.map((l) => (
-              <option key={l} value={l}>
-                {l}
-              </option>
+              <option key={l} value={l}>{l}</option>
             ))}
           </select>
         </div>

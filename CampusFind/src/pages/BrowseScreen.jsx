@@ -10,7 +10,6 @@ const ITEMS = [
     location: "Science Center Lounge",
     time: "2 hours ago",
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80",
-    category: "Bags & Backpacks",
   },
   {
     id: 2,
@@ -20,7 +19,6 @@ const ITEMS = [
     location: "Main Library, 2nd Floor",
     time: "5 hours ago",
     image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&q=80",
-    category: "Electronics",
   },
   {
     id: 3,
@@ -30,7 +28,6 @@ const ITEMS = [
     location: "Student Fitness Center",
     time: "Yesterday",
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80",
-    category: "Other",
   },
   {
     id: 4,
@@ -40,7 +37,6 @@ const ITEMS = [
     location: "Dining Hall",
     time: "Yesterday",
     image: "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=400&q=80",
-    category: "ID & Wallets",
   },
   {
     id: 5,
@@ -50,7 +46,6 @@ const ITEMS = [
     location: "Engineering Building",
     time: "2 days ago",
     image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&q=80",
-    category: "Electronics",
   },
 ];
 
@@ -77,7 +72,7 @@ const BrowseScreen = ({ onNavigate }) => {
     <div className="browse-screen">
       {/* Header */}
       <header className="browse-header">
-        <button className="avatar-btn">👤</button>
+        <button className="avatar-btn" onClick={() => onNavigate?.("dashboard")}>👤</button>
         <h2>Browse Items</h2>
         <button className="notif-btn">🔔</button>
       </header>
@@ -92,9 +87,7 @@ const BrowseScreen = ({ onNavigate }) => {
           onChange={(e) => setSearch(e.target.value)}
         />
         {search && (
-          <button className="clear-search" onClick={() => setSearch("")}>
-            ✕
-          </button>
+          <button className="clear-search" onClick={() => setSearch("")}>✕</button>
         )}
       </div>
 
@@ -125,14 +118,10 @@ const BrowseScreen = ({ onNavigate }) => {
               <div className="item-image-wrapper">
                 <img src={item.image} alt={item.name} />
                 <div className="item-badges">
-                  <span
-                    className={`badge type-badge ${item.type === "LOST" ? "lost" : "found"}`}
-                  >
+                  <span className={`badge type-badge ${item.type === "LOST" ? "lost" : "found"}`}>
                     {item.type}
                   </span>
-                  <span
-                    className={`badge status-badge ${item.status === "CLAIMED" ? "claimed" : ""}`}
-                  >
+                  <span className={`badge status-badge ${item.status === "CLAIMED" ? "claimed" : ""}`}>
                     {item.status}
                   </span>
                 </div>
@@ -146,7 +135,12 @@ const BrowseScreen = ({ onNavigate }) => {
                   <span className="location-pin">📍</span>
                   {item.location}
                 </div>
-                <button className="view-details-btn">View Details</button>
+                <button
+                  className="view-details-btn"
+                  onClick={() => onNavigate?.("detail")}
+                >
+                  View Details
+                </button>
               </div>
             </div>
           ))
@@ -154,27 +148,26 @@ const BrowseScreen = ({ onNavigate }) => {
       </div>
 
       {/* FAB */}
-      <button className="browse-fab" onClick={() => onNavigate?.("report")}>
-        ＋
-      </button>
+      <button className="browse-fab" onClick={() => onNavigate?.("report")}>＋</button>
 
       {/* Bottom Nav */}
       <nav className="bottom-nav">
+        <button className="nav-item" onClick={() => onNavigate?.("home")}>
+          <span>🏠</span>
+          <span>Home</span>
+        </button>
         <button className="nav-item active">
-          <span>🔍</span>
-          <span>BROWSE</span>
-        </button>
-        <button className="nav-item">
-          <span>🗺️</span>
-          <span>MAP</span>
-        </button>
-        <button className="nav-item">
           <span>📋</span>
-          <span>MY POSTS</span>
+          <span>Listings</span>
         </button>
-        <button className="nav-item">
-          <span>⚙️</span>
-          <span>SETTINGS</span>
+        <button className="nav-fab" onClick={() => onNavigate?.("report")}>＋</button>
+        <button className="nav-item" onClick={() => onNavigate?.("dashboard")}>
+          <span>▦</span>
+          <span>Dashboard</span>
+        </button>
+        <button className="nav-item" onClick={() => onNavigate?.("dashboard")}>
+          <span>👤</span>
+          <span>Profile</span>
         </button>
       </nav>
     </div>

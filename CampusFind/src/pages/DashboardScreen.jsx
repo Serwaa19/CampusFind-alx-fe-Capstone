@@ -26,14 +26,16 @@ const ACTIVITY = [
     id: 1,
     icon: "🔔",
     iconBg: "#e8f0fe",
-    message: <>Match Found: Someone found a matching <strong>'Blue Hydroflask'</strong></>,
+    message: "Match Found: Someone found a matching 'Blue Hydroflask'",
+    bold: "Blue Hydroflask",
     time: "2 hours ago",
   },
   {
     id: 2,
     icon: "✅",
     iconBg: "#f0fdf4",
-    message: <>Your post <strong>'Sony Headphones'</strong> was marked as claimed!</>,
+    message: "Your post 'Sony Headphones' was marked as claimed!",
+    bold: "Sony Headphones",
     time: "Yesterday",
   },
 ];
@@ -49,9 +51,17 @@ const DashboardScreen = ({ onNavigate }) => {
     );
   };
 
+  const renderMessage = (item) => {
+    const parts = item.message.split(`'${item.bold}'`);
+    return (
+      <p>
+        {parts[0]}<strong>'{item.bold}'</strong>{parts[1]}
+      </p>
+    );
+  };
+
   return (
     <div className="dashboard-screen">
-      {/* Header */}
       <header className="dashboard-header">
         <div className="avatar">
           <img
@@ -64,13 +74,11 @@ const DashboardScreen = ({ onNavigate }) => {
       </header>
 
       <div className="dashboard-body">
-        {/* Profile */}
         <div className="profile-section">
           <h1 className="profile-name">Alex Johnson</h1>
           <p className="profile-meta">Computer Science Senior • ID: 12345</p>
         </div>
 
-        {/* Stats */}
         <div className="stats-row">
           <div className="stat-card">
             <span className="stat-label">ACTIVE</span>
@@ -92,7 +100,6 @@ const DashboardScreen = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Recent Activity */}
         <div className="section-header">
           <h3>Recent Activity</h3>
           <button className="view-all-btn">View All</button>
@@ -101,21 +108,17 @@ const DashboardScreen = ({ onNavigate }) => {
         <div className="activity-card">
           {ACTIVITY.map((item) => (
             <div key={item.id} className="activity-item">
-              <div
-                className="activity-icon"
-                style={{ background: item.iconBg }}
-              >
+              <div className="activity-icon" style={{ background: item.iconBg }}>
                 {item.icon}
               </div>
               <div className="activity-text">
-                <p>{item.message}</p>
+                {renderMessage(item)}
                 <span>{item.time}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* My Posts */}
         <h3 className="my-posts-title">My Posts</h3>
 
         {posts.map((post) => (
@@ -137,10 +140,7 @@ const DashboardScreen = ({ onNavigate }) => {
             {post.status === "ACTIVE" ? (
               <div className="post-actions">
                 <button className="edit-btn">✏️ Edit</button>
-                <button
-                  className="claim-btn"
-                  onClick={() => markClaimed(post.id)}
-                >
+                <button className="claim-btn" onClick={() => markClaimed(post.id)}>
                   ✅ Mark Claimed
                 </button>
               </div>
@@ -153,28 +153,25 @@ const DashboardScreen = ({ onNavigate }) => {
         ))}
       </div>
 
-      {/* FAB */}
-      <button className="dashboard-fab" onClick={() => onNavigate?.("report")}>
-        ＋
-      </button>
+      <button className="dashboard-fab" onClick={() => onNavigate?.("report")}>＋</button>
 
-      {/* Bottom Nav */}
       <nav className="bottom-nav">
+        <button className="nav-item" onClick={() => onNavigate?.("home")}>
+          <span>🏠</span>
+          <span>Home</span>
+        </button>
         <button className="nav-item" onClick={() => onNavigate?.("browse")}>
-          <span>🧭</span>
-          <span>EXPLORE</span>
+          <span>📋</span>
+          <span>Listings</span>
         </button>
-        <button className="nav-item">
-          <span>🗺️</span>
-          <span>MAP</span>
-        </button>
+        <button className="nav-fab" onClick={() => onNavigate?.("report")}>＋</button>
         <button className="nav-item active">
           <span>▦</span>
-          <span>MY POSTS</span>
+          <span>Dashboard</span>
         </button>
         <button className="nav-item">
           <span>👤</span>
-          <span>PROFILE</span>
+          <span>Profile</span>
         </button>
       </nav>
     </div>
