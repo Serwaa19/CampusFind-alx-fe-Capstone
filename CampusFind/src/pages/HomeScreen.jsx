@@ -17,7 +17,7 @@ const HomeScreen = ({ onNavigate }) => {
       <header className="home-header">
         <div className="home-logo">
           <span className="logo-icon">🎓</span>
-          <span className="logo-text">Campus Found</span>
+          <span className="logo-text">CampusFind</span>
         </div>
         <button className="help-btn">Help</button>
       </header>
