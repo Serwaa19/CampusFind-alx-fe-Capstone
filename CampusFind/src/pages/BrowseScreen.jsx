@@ -13,7 +13,7 @@ const ITEMS = [
   },
   {
     id: 2,
-    name: "AirPods Pro Case",
+    name: "AirPods Pro",
     type: "FOUND",
     status: "UNCLAIMED",
     location: "Main Library, 2nd Floor",
@@ -22,7 +22,7 @@ const ITEMS = [
   },
   {
     id: 3,
-    name: "Silver HydroFlask",
+    name: "Green HydroFlask",
     type: "FOUND",
     status: "UNCLAIMED",
     location: "Student Fitness Center",
